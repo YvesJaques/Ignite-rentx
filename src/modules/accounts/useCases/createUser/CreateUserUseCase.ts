@@ -17,7 +17,7 @@ class CreateUserUseCase {
     password,
     driver_license,
   }: ICreateUserDTO): Promise<void> {
-    const userAlreadyexists = this.usersRepository.findByEmail(email);
+    const userAlreadyexists = await this.usersRepository.findByEmail(email);
 
     if (userAlreadyexists) throw new AppError("User already exists!");
 
