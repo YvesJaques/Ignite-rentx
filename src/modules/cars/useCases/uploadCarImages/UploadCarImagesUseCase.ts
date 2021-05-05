@@ -16,11 +16,11 @@ class UploadCarImagesUseCase {
   ) {}
 
   async execute({ car_id, images_name }: IRequest): Promise<void> {
-    const images = await this.carsImagesRepository.findByCarId(car_id);
+    const previousImages = await this.carsImagesRepository.findByCarId(car_id);
 
-    if (images) {
+    if (previousImages) {
       await this.carsImagesRepository.deleteByCarId(car_id);
-      images.forEach(async image => {
+      previousImages.forEach(async image => {
         await deleteFile(`./tmp/cars/${image.image_name}`);
       });
     }
