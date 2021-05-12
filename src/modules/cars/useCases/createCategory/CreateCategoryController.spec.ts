@@ -9,8 +9,6 @@ import createConnection from "@shared/infra/typeorm";
 let connection: Connection;
 describe("Create Category Controller", () => {
   beforeAll(async () => {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    setTimeout(() => {}, 5000);
     connection = await createConnection();
     await connection.runMigrations();
 
