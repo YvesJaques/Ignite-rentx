@@ -1,3 +1,4 @@
+import { CarsRepositoryInMemory } from "@modules/cars/repositories/in-memory/CarsRepositoryInMemory";
 import dayjs from "dayjs";
 
 import { AppError } from "@shared/errors/AppError";
@@ -8,15 +9,18 @@ import { CreateRentalUseCase } from "./createRentalUseCase";
 let createRentalUseCase: CreateRentalUseCase;
 let rentalsRepositoryInMemory: RentalsRepositoryInMemory;
 let dayjsDateProvider: DayjsDateProvider;
+let carsRepositoryInMemory: CarsRepositoryInMemory;
 
 describe("Create Rental", () => {
   const dayAdd24Hours = dayjs().add(1, "day").toDate();
   beforeEach(() => {
     dayjsDateProvider = new DayjsDateProvider();
     rentalsRepositoryInMemory = new RentalsRepositoryInMemory();
+    carsRepositoryInMemory = new CarsRepositoryInMemory();
     createRentalUseCase = new CreateRentalUseCase(
       rentalsRepositoryInMemory,
       dayjsDateProvider,
+      carsRepositoryInMemory,
     );
   });
 
@@ -26,6 +30,7 @@ describe("Create Rental", () => {
       car_id: "121212",
       expected_return_date: dayAdd24Hours,
     });
+    // console.log(await carsRepositoryInMemory.findByLicensePlate("121212"));
 
     expect(rental).toHaveProperty("id");
     expect(rental).toHaveProperty("start_date");

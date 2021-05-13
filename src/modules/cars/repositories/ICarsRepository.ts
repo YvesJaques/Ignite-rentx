@@ -1,4 +1,4 @@
-import { Car, Car } from "@modules/cars/infra/typeorm/entities/Car";
+import { Car } from "@modules/cars/infra/typeorm/entities/Car";
 import { ICreateCarDTO } from "../dtos/ICreateCarDTO";
 
 interface ICarsRepository {
@@ -10,6 +10,7 @@ interface ICarsRepository {
     name?: string,
   ): Promise<Car[]>;
   findById(id: string): Promise<Car>;
+  updateAvailable(id: string, available: boolean): Promise<void>;
 }
 
 export { ICarsRepository };
