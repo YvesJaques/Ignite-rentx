@@ -118,7 +118,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/definitions/specification"
+                                "$ref": "#/definitions/Specification"
                             }
                         }
                     }
@@ -167,7 +167,7 @@
         }
     },
     "definitions": {
-        "specification": {
+        "Specification": {
             "type": "object",
             "properties": {
                 "name": {
