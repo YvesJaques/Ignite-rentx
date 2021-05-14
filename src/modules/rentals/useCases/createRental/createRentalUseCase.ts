@@ -22,13 +22,13 @@ class CreateRentalUseCase {
     private carsRepository: ICarsRepository,
   ) {}
 
+  minimumRentalHours = 24;
+
   async execute({
     user_id,
     car_id,
     expected_return_date,
   }: IRequest): Promise<Rental> {
-    const minimumRentalHours = 24;
-
     const carUnavailable = await this.rentalsRepository.findOpenRentalByCar(
       car_id,
     );
@@ -52,9 +52,9 @@ class CreateRentalUseCase {
       expected_return_date,
     );
 
-    if (compare < minimumRentalHours) {
+    if (compare < this.minimumRentalHours) {
       throw new AppError(
-        `Can't register a rental with less than ${minimumRentalHours} hours return time.`,
+        `Can't register a rental with less than ${this.minimumRentalHours} hours return time.`,
       );
     }
 
