@@ -36,7 +36,7 @@ class ResetPasswordUserUseCase {
         this.dateProvider.dateNow(),
       )
     ) {
-      throw new AppError("Invalid expired!");
+      throw new AppError("Token expired!");
     }
 
     const user = await this.userRepository.findById(userToken.user_id);
