@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.listSpecificationsController = void 0;
+var SpecificationsRepository_1 = require("@modules/cars/infra/typeorm/repositories/SpecificationsRepository");
+var ListSpecificationsController_1 = require("./ListSpecificationsController");
+var ListSpecificationsUseCase_1 = require("./ListSpecificationsUseCase");
+var specificationsRepository = new SpecificationsRepository_1.SpecificationsRepository();
+var listSpecificationsUseCase = new ListSpecificationsUseCase_1.ListSpecificationsUseCase(specificationsRepository);
+var listSpecificationsController = new ListSpecificationsController_1.ListSpecificationsController(listSpecificationsUseCase);
+exports.listSpecificationsController = listSpecificationsController;
