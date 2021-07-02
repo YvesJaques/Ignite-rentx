@@ -1,88 +1,136 @@
-#Cadastro de carro
+# :memo: About
+
+Rentx, a vehicle rental API. This is the main NodeJs project developed during RocketSeat's career acceleration program, Ignite.
+
+<br />
+
+# :wrench: Techs used
+
+- [TypeScript](https://www.typescriptlang.org/)
+- [Express](https://expressjs.com/)
+- [Cors](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [Typeorm](https://typeorm.io)
+- [Sentry](https://sentry.io)
+- [AWS-SDK](https://docs.aws.amazon.com/sdk-for-javascript/index.html)
+- [Bcrypt](https://www.npmjs.com/package/bcrypt)
+- [Jest](https://jestjs.io)
+- [Redis](https://redis.io)
+- Etc
+
+# :arrow_down: How to download this project
+
+⚠ The following tools must be installed: [nodejs](https://nodejs.org/en/).
+
+⚠ You can use [yarn](https://yarnpkg.com/) or [npm]() to install dependencies.
+
+<br />
+
+Clone this project to your local machine:
+```bash
+# Clone this project to your local machine
+$ git clone https://github.com/YvesJaques/Ignite-rentx
+
+# access the project folder
+$ cd Ignite-websockets
+
+# Install dependencies
+$ yarn / npm install
+
+# run the project
+$ yarn / npm run
+```
+
+<br />
+
+<p align="center">Made by <a href="https://www.linkedin.com/in/yves-morais-jaques/" target="_blank">Yves Morais Jaques</a></p>
+
+# :memo: Requirements
+
+# Car registration
 
 **RF**
-Deve ser possível cadastrar um novo carro.
-Deve ser possível listar todas as categorias.
+- Should be able to register a new car.
+- Should be able to list all categories.
 
 **RN**
-Não deve ser possível cadastrar um carro com uma placa já existente.
-O carro deve ser cadastrado, por padrão, com disponibilidade.
-O usuário responsável pelo cadastrado deve ser um usuário administrador.
+- Should not be able to register a car with a duplicate plate number.
+- A car should be registered as available as default.
+- Only admins should be able to register new cars.
 
-# Listagem de carros
+# Cars list
 
 **RF**
-Deve ser possível listar todos os carros disponíveis.
-Deve ser possível listar todos os carros disponíveis pelo nome da categoria.
-Deve ser possível listar todos os carros disponíveis pelo nome da marca.
-Deve ser possível listar todos os carros disponíveis pelo nome do carro.
+- Shoul be able to list all available cars.
+- Should be able to list all available cars by category name.
+- Should be able to list all available cars by brand name.
+- Should be able to list all available cars by car name.
 
 **RN**
-O usuário não precisa estar logado no sistema.
+- User doesn't need to be logged in.
 
-# Cadastro de Especificação no carro
+# Car specification registration
 
 **RF**
-Deve ser possível cadastrar uma especificação para um carro.
+- Should be able to register an specification for a car.
 
 **RN**
-Não deve ser possível cadastrar uma especificação para um carro não cadastrado.
-Não deve ser possível cadastrar uma epecificação já existente para um mesmo carro.
-O usuário responsável pelo cadastrado deve ser um usuário administrador.
+- Should not be able to register an specification for a non registered car.
+- Should not be able to register a duplicate specification for a car.
+- Only admins should be able to register specifications.
 
-# Cadastro de imagens do carro
+# Car images registration
 
 **RF**
-Deve ser possível cadastrar a imagem do carro.
+- Should be able to register a car's image.
 
 **RNF**
-Utilizar o multer para upload dos arquivos.
+- Use Multer for file upload.
 
 **RN**
-O usuário deve poder cadastrar mais de uma imagem para o mesmo carro.
-O usuário responsável pelo cadastro deve ser um usuário administrador.
+- User should be able to register multiple images for a car.
+- Only admins should be able to upload images.
 
-# Aluguel de carro
+# Car rent
 
 **RF**
-Deve ser possível cadastrar um aluguel.
+- Should be able to register a rent.
 
 **RN**
-O aluguel deve ter duração mínima de 24 horas.
-Não deve ser possível cadastrar um novo aluguel caso já exista um aberto para o mesmo usuário.
-Não deve ser possível cadastrar um novo aluguel caso já exista um aberto para o mesmo carro.
-O usuário deve estar logado na aplicação.
-Ao realizar um aluguel, o status do carro deverá ser alterado para indisponível.
+- A rent should have a minimum duration of 24 hours.
+- Should not be able to register a duplicate active rent for the same user.
+- Should not be able to register a duplicate active rent for the same car.
+- User must be logged in.
+- A car should be set as unavailable after a rent is made.
 
-# Devolução de carro
+# Car devolution
 
 **RF**
-Deve ser possível realizar a devolução de um carro
+- Sohlud be able to register a car devolution.
 
 **RN**
-Se o carro for devolvido com menos de 24 horas, deverá ser cobrado diária completa.
-Ao realizar a devolução, o carro deverá ser liberado para outro aluguel.
-Ao realizar a devolução, o usuário deverá ser liberado para outro aluguel.
-Ao realizar a devolução, deverá ser calculado o total do alugel.
-Caso o horário de devolução seja superior ao horário previsto de entrega, deverá ser cobrada multa proporcional aos dias de atraso.
-Caso haja multa, deverá ser somada ao total do aluguel.
-O usuário deve estar logado na aplicação.
+- Customer should be charged a full daily rate even if the car is returned before the minimum rent duration.
+- On car return the same should be set as available again.
+- On car return the user should be able to make a new rent.
+- The total rent charge should be calculated on devolution.
+- A fine should be charged in case the devolution exceeds the stipulated duration.
+- The fine should be added to the total rent charge.
+- User must be logged in.
 
-# Listagem de Alugueis para usuário
+# User's rents listing
 
 **RF**
-Deve ser possível realizar a busca de todos os alugueis para o usuário
+- Should be able to list all rents for the user.
 
 **RN**
-O usuário deve estar logado na aplicação
+- User must be logged in.
 
-# Recuperar Senha
+# Recover password
 
 **RF**
-- Deve ser possível o usuário recuperar a senha informando o  e-mail
-- O usuário deve receber um e-mail com o passo a passo para a recuperação da senha
-- O usuário deve conseguir inserir uma nova senha
+- User should be able to recover password by entering the registered email.
+- User should recevei an email with password recover instructions.
+- User should be able to insert a new password.
 
 **RN**
-- O usuário precisa informar uma nova senha
-- O link enviado para a recuperação deve expirar em 3 horas
+- User must insert a new password.
+- Password recover link should expire in 3 hours
